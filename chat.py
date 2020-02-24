@@ -5,9 +5,10 @@ from bson.objectid import ObjectId
 import datetime
 import json
 import nltk
+from config import dbURL
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
-client = MongoClient("mongodb://localhost:27017/")
+client = MongoClient(dbURL)
 db =client['chatgroup']
 users = db['users']
 chat = db['chat']

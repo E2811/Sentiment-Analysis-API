@@ -2,9 +2,9 @@ from pymongo import MongoClient, InsertOne
 from bson.json_util import dumps
 from errorHandler import error_handler
 import recommender as R
+from config import dbURL
 
-
-client = MongoClient("mongodb://localhost:27017/")
+client = MongoClient(dbURL)
 db =client['chatgroup']
 users = db['users']
 

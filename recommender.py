@@ -8,10 +8,12 @@ from pymongo import MongoClient
 from scipy.spatial.distance import pdist, squareform
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
+from config import dbURL
 
-client = MongoClient("mongodb://localhost:27017/")
+client = MongoClient(dbURL)
 db =client['chatgroup']
 chat = db['chat']
+users = db['users']
 
 @error_handler
 def obtain_info(user_id):
@@ -54,4 +56,5 @@ def recommend_similar(user_id):
     similarity_df = pd.DataFrame(similarity_matrix, columns=message_users.T.columns, index=message_users.T.columns)
     np.fill_diagonal(similarity_df.values, 0) 
     similars = dict(similarity_df.idxmax())
-    return {'user_id':str(similars[user_id])}
+    name = list(users.find({'user_id':int(similars[user_id])}, {'_id':0, 'username':1}))
+    return {'user_id':str(similars[user_id]), 'username':name[0]['username']}

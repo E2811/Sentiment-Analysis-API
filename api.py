@@ -1,5 +1,8 @@
 #!/usr/local/bin/python3
 from flask import Flask, request
+import os
+from dotenv import load_dotenv
+load_dotenv()
 import users as U
 import chat as C
 
@@ -51,4 +54,4 @@ def recommend_user(user_id):
 def sentimentScore(chat_id):
     return C.sentiment_chat(chat_id)
 
-app.run("0.0.0.0", 5000, debug=True)
+app.run("0.0.0.0", os.getenv("PORT"), debug=True)

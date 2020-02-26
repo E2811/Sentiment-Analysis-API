@@ -1,5 +1,13 @@
 # Sentiment-Analysis-API
 
+The aim of this project is to create an API in Falsk to create conversation between different users in chat. In the SRC folder, you can find different files with the necessary code to implement the API. 
+  - api.py: File which connect the API and created the endpoints
+  - user.py: code to insert the users in the users collection with its corresponding username and users_id
+  - chat.py: code to create the chats
+  - errorhandler: function to control possible errors when making requests to the API 
+  -recommender: code to implement a recommendation system for the users
+  -test_api.ipynb: to test the api and observe some examples of requests
+  
 ## API endpoints
 
 ### 1. User endpoints 
@@ -44,3 +52,5 @@
 - (GET) `/chat/<chat_id>/sentiment`
   - **Purpose:** Analyze messages from `chat_id`using`NLTK` sentiment analysis package. Introduce in de database the score sentiment of each message
   - **Returns:** json with an average of sentiments from messages in the chat and all messages with sentiment score. 
+  
+#### Deployed at HEROKU still in process
